@@ -13,5 +13,5 @@ typedef struct {
   Motor motorB;
 } DualDriver;
 
-void motor_init(DualDriver config);
+void motor_init(Motor config);
 void motor_move(Motor motor, int speed);

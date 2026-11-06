@@ -3,7 +3,7 @@
 #include <hardware/structs/io_bank0.h>
 #include <motor_driver.h>
 
-static void single_motor_init(Motor motor) {
+void motor_init(Motor motor) {
   // Initialize direction pins
   gpio_init(motor.in1);
   gpio_set_dir(motor.in1, GPIO_OUT);
@@ -21,11 +21,6 @@ static void single_motor_init(Motor motor) {
 
   pwm_init(slice, &conf, true);
   pwm_set_gpio_level(motor.pwm, 0);
-}
-
-void motor_init(DualDriver config) {
-  single_motor_init(config.motorA);
-  single_motor_init(config.motorB);
 }
 
 static void handle_motor_direction(Motor motor, bool fwd) {
