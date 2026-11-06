@@ -10,10 +10,10 @@ static const Motor m3 = {.in1 = 10, .in2 = 9, .pwm = 8, .reverse = false};
 static const Motor m4 = {.in1 = 11, .in2 = 12, .pwm = 13, .reverse = false};
 
 static OmnidirConfig omniConfig = {
-    .frontLeft = m1,
-    .frontRight = m2,
-    .backLeft = m3,
-    .backRight = m4,
+    .frontLeft = m2,
+    .frontRight = m1,
+    .backLeft = m4,
+    .backRight = m3,
 };
 
 static I2C_Config i2cConfig = {
