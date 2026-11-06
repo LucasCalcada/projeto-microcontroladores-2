@@ -19,4 +19,4 @@ typedef struct {
   float rotation;
 } OmnidirMovement;
 
-void omni_move(OmnidirConfig config, OmnidirMovement movement);
+void omni_move(OmnidirMovement movement);
