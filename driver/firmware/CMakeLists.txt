@@ -22,6 +22,8 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 add_executable(proj-semestral-2
   src/main.c
   src/motor_driver.c
+  src/omni_movement.c
+  src/i2c_interface.c
 )
 
 target_include_directories(proj-semestral-2 PRIVATE
@@ -32,6 +34,8 @@ target_link_libraries(proj-semestral-2
   pico_stdlib
   hardware_pwm
   hardware_gpio
+  hardware_i2c
+  pico_i2c_slave
 )
 
 pico_enable_stdio_usb(proj-semestral-2 1)

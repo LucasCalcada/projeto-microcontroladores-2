@@ -16,4 +16,5 @@ static OmnidirConfig omniConfig = {
     .backRight = m4,
 };
 
-static I2C_Config i2cConfig = {.i2c = i2c1, .sda = 14, .scl = 15};
+static I2C_Config i2cConfig = {
+    .i2c = i2c1, .sda = 14, .scl = 15, .baudrate = 4e5};
