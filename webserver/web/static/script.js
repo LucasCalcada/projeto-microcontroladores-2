@@ -1,3 +1,5 @@
+const controlWs = new WebSocket("/controls");
+
 const buttons = {
   direction: {
     up: document.getElementById("up"),
@@ -71,23 +73,31 @@ function updateButtons() {
   }
 }
 
+function sendCommand() {
+  controlWs.send(JSON.stringify(input));
+}
+
 document.addEventListener("keydown", (event) => {
   if (!controls[event.code]) return;
+  if (event.repeat) return;
 
   event.preventDefault();
   pressedKeys.add(event.code);
 
   updateInput();
   updateButtons();
+  sendCommand();
 });
 
 document.addEventListener("keyup", (event) => {
   if (!controls[event.code]) return;
+  if (event.repeat) return;
 
   pressedKeys.delete(event.code);
 
   updateInput();
   updateButtons();
+  sendCommand();
 });
 
 window.addEventListener("blur", () => {
@@ -95,4 +105,5 @@ window.addEventListener("blur", () => {
 
   updateInput();
   updateButtons();
+  sendCommand();
 });
