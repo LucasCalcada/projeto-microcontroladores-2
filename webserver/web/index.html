@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bot Dashboard</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="header">
+      <h1>Bot Dashboard</h1>
+
+      <!-- Remove if not used  -->
+      <div class="battery">
+        <p id="batteryVal">100%</p>
+      </div>
+    </div>
+    <div class="camera">
+      <img src="/camera/stream" />
+    </div>
+    <div class="controls">
+      <div class="directions">
+        <button id="up"></button>
+        <div>
+          <button id="left"></button>
+          <button id="right"></button>
+        </div>
+        <button id="down"></button>
+      </div>
+      <div class="rotation">
+        <button id="rot-left"></button>
+        <button id="rot-right"></button>
+      </div>
+    </div>
+  </body>
+  <script src="/static/script.js"></script>
+</html>

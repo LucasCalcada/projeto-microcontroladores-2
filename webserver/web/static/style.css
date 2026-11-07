@@ -1,0 +1,94 @@
+:root {
+  font-family: "Courier New", Courier, monospace;
+
+  --dark-bg: #e3e3e8;
+  --light-bg: white;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--dark-bg);
+}
+
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+
+  border-radius: 0px 0px 12px 12px;
+  background-color: var(--light-bg);
+}
+
+.header > h1 {
+  margin: 0;
+  font-size: 16pt;
+}
+
+.battery > p {
+  margin: 0;
+}
+
+.camera {
+  flex: 1;
+
+  display: flex;
+  justify-content: center;
+}
+
+.controls {
+  flex: 1;
+  background-color: var(--light-bg);
+  border-radius: 12px 12px 0px 0px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 128px;
+}
+
+.directions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 150px;
+}
+
+.directions > div {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.rotation {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 125px;
+}
+
+button {
+  aspect-ratio: 1;
+  width: 50px;
+  border-radius: 12px;
+  border: none;
+  transition:
+    background-color 100ms ease,
+    transform 100ms ease;
+}
+
+button.active {
+  background-color: #3b82f6;
+  color: white;
+  transform: scale(0.95);
+}
