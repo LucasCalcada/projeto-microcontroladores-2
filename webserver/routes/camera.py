@@ -2,7 +2,7 @@ from fastapi import APIRouter
 from fastapi.responses import StreamingResponse
 
 from camera.video_source import VideoSource
-from webserver.camera.csi_camera import CsiCamera
+from camera.csi_camera import CsiCamera
 
 router = APIRouter()
 
