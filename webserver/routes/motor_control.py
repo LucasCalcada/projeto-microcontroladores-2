@@ -25,8 +25,8 @@ async def websocket_endpoint(websocket: WebSocket):
         while True:
             command = await websocket.receive_json()
 
-            x = float(command["x"])
-            y = float(command["y"])
+            x = float(command["direction"]["x"])
+            y = float(command["direction"]["y"])
             rotation = float(command["rotation"])
 
             print(f"[DEBUG] Client send command: {command}")
