@@ -82,7 +82,7 @@ O sistema utiliza uma arquitetura distribuída entre duas placas, com responsabi
 
 ### 5.1. Diagrama de blocos
 
-*Inserir diagrama de blocos do sistema.*
+![Diagrama de Blocos](assets/diagrama-blocos.png)
 
 ### 5.2. Funcionamento
 
