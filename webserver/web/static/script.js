@@ -32,11 +32,11 @@ const controls = {
   },
   ArrowLeft: {
     element: buttons.turn.left,
-    delta: { x: 0, y: 0, rotation: -1 },
+    delta: { x: 0, y: 0, rotation: 1 },
   },
   ArrowRight: {
     element: buttons.turn.right,
-    delta: { x: 0, y: 0, rotation: 1 },
+    delta: { x: 0, y: 0, rotation: -1 },
   },
 };
 
