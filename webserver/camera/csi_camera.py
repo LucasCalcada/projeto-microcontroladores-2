@@ -38,7 +38,7 @@ class CsiCamera(VideoSource):
             if frame is None:
                 continue
 
-            frame = cv2.flip(frame, 1)
+            frame = cv2.flip(frame, 0)
             frame = cv2.resize(frame, (self.width, self.height))
 
             success, buffer = cv2.imencode(
