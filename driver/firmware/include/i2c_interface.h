@@ -15,3 +15,6 @@ typedef struct {
 } I2C_Packet;
 
 void interface_init();
+
+bool command_ready();
+OmnidirMovement get_movement();

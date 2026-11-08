@@ -13,11 +13,14 @@
 uint8_t commandBuf[I2C_BUFFER_SIZE];
 int commandLen = 0;
 
+bool ready = false;
+OmnidirMovement movement = {.translation = {.x = 0, .y = 0}, .rotation = 0};
+
 static void handle_command_finish() {
   // Parse read command
   I2C_Packet *pkt = (void *)&commandBuf;
-  OmnidirMovement movement = pkt->movement;
-  omni_move(movement);
+  movement = pkt->movement;
+  ready = true;
 
   // Reset i2c state
   commandLen = 0;
@@ -26,6 +29,7 @@ static void handle_command_finish() {
 static void i2c_callback(i2c_inst_t *i2c, i2c_slave_event_t event) {
   switch (event) {
   case I2C_SLAVE_RECEIVE:
+    ready = false;
     commandBuf[commandLen++] = i2c_read_byte_raw(i2c);
     break;
 
@@ -48,3 +52,7 @@ void interface_init() {
   i2c_init(i2cConfig.i2c, i2cConfig.baudrate);
   i2c_slave_init(i2cConfig.i2c, I2C_ADDR, i2c_callback);
 }
+
+bool command_ready() { return ready; }
+
+OmnidirMovement get_movement() { return movement; }
