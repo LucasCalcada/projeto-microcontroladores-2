@@ -2,16 +2,22 @@
 #include <omni_movement.h>
 #include <robot.h>
 
+float speed = 200.0;
+
 void omni_move(OmnidirMovement movement) {
-  int fL = movement.translation.y + movement.translation.x + movement.rotation;
-  motor_move(omniConfig.frontLeft, fL);
+  float fL =
+      movement.translation.y + movement.translation.x + movement.rotation;
+  motor_move(omniConfig.frontLeft, fL * speed);
 
-  int fR = movement.translation.y - movement.translation.x - movement.rotation;
-  motor_move(omniConfig.frontRight, fR);
+  float fR =
+      movement.translation.y - movement.translation.x - movement.rotation;
+  motor_move(omniConfig.frontRight, fR * speed);
 
-  int bL = movement.translation.y - movement.translation.x + movement.rotation;
-  motor_move(omniConfig.backLeft, bL);
+  float bL =
+      movement.translation.y - movement.translation.x + movement.rotation;
+  motor_move(omniConfig.backLeft, bL * speed);
 
-  int bR = movement.translation.y + movement.translation.x - movement.rotation;
-  motor_move(omniConfig.backRight, bR);
+  float bR =
+      movement.translation.y + movement.translation.x - movement.rotation;
+  motor_move(omniConfig.backRight, bR * speed);
 }

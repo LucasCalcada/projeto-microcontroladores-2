@@ -2,6 +2,7 @@
 #include <hardware/pwm.h>
 #include <hardware/structs/io_bank0.h>
 #include <motor_driver.h>
+#include <stdlib.h>
 
 void motor_init(Motor motor) {
   // Initialize direction pins
@@ -45,5 +46,5 @@ void motor_move(Motor motor, int speed) {
     handle_motor_direction(motor, fwd);
   }
 
-  pwm_set_gpio_level(motor.pwm, speed);
+  pwm_set_gpio_level(motor.pwm, abs(speed));
 }
