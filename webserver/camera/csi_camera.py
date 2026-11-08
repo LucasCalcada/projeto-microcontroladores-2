@@ -29,8 +29,7 @@ class CsiCamera(VideoSource):
 
     def generate_frame(self):
         frame = self.camera.capture_array()
-
-        return cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+        return frame
 
     def generate_frames(self):
         while True:
@@ -39,6 +38,7 @@ class CsiCamera(VideoSource):
             if frame is None:
                 continue
 
+            frame = cv2.flip(frame, 1)
             frame = cv2.resize(frame, (self.width, self.height))
 
             success, buffer = cv2.imencode(
