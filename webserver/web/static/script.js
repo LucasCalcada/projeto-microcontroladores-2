@@ -1,42 +1,38 @@
 const controlWs = new WebSocket("/controls");
 
-const buttons = {
-  direction: {
-    up: document.getElementById("up"),
-    down: document.getElementById("down"),
-    left: document.getElementById("left"),
-    right: document.getElementById("right"),
-  },
-  turn: {
-    left: document.getElementById("rot-left"),
-    right: document.getElementById("rot-right"),
-  },
-};
+const joystickDisplay = document.getElementById("joystick-indicator");
+const rotationDisplay = document.getElementById("rotation-indicator");
 
 const controls = {
   KeyW: {
-    element: buttons.direction.up,
-    delta: { x: 0, y: 1, rotation: 0 },
+    x: 0,
+    y: 1,
+    rotation: 0,
   },
   KeyS: {
-    element: buttons.direction.down,
-    delta: { x: 0, y: -1, rotation: 0 },
+    x: 0,
+    y: -1,
+    rotation: 0,
   },
   KeyA: {
-    element: buttons.direction.left,
-    delta: { x: -1, y: 0, rotation: 0 },
+    x: -1,
+    y: 0,
+    rotation: 0,
   },
   KeyD: {
-    element: buttons.direction.right,
-    delta: { x: 1, y: 0, rotation: 0 },
+    x: 1,
+    y: 0,
+    rotation: 0,
   },
   ArrowLeft: {
-    element: buttons.turn.left,
-    delta: { x: 0, y: 0, rotation: 1 },
+    x: 0,
+    y: 0,
+    rotation: 1,
   },
   ArrowRight: {
-    element: buttons.turn.right,
-    delta: { x: 0, y: 0, rotation: -1 },
+    x: 0,
+    y: 0,
+    rotation: -1,
   },
 };
 
@@ -57,9 +53,9 @@ function updateInput() {
     const control = controls[key];
     if (!control) continue;
 
-    direction.x += control.delta.x;
-    direction.y += control.delta.y;
-    rotation += control.delta.rotation;
+    direction.x += control.x;
+    direction.y += control.y;
+    rotation += control.rotation;
   }
 
   input.direction.x = clamp(direction.x);
@@ -67,10 +63,25 @@ function updateInput() {
   input.rotation = rotation;
 }
 
-function updateButtons() {
-  for (const [key, control] of Object.entries(controls)) {
-    control.element?.classList.toggle("active", pressedKeys.has(key));
+function updateDisplay() {
+  let x = input.direction.x;
+  let y = input.direction.y;
+  const magnitude = Math.sqrt(x * x + y * y);
+
+  if (magnitude > 1) {
+    x /= magnitude;
+    y /= magnitude;
   }
+
+  const offsetX = x * 50;
+  const offsetY = -y * 50;
+
+  joystickDisplay.style.left = `${50 + offsetX}%`;
+  joystickDisplay.style.top = `${50 + offsetY}%`;
+
+  let rot = input.rotation;
+  const offsetRot = -rot * 50;
+  rotationDisplay.style.left = `${50 + offsetRot}%`;
 }
 
 function sendCommand() {
@@ -85,7 +96,7 @@ document.addEventListener("keydown", (event) => {
   pressedKeys.add(event.code);
 
   updateInput();
-  updateButtons();
+  updateDisplay();
   sendCommand();
 });
 
@@ -96,7 +107,7 @@ document.addEventListener("keyup", (event) => {
   pressedKeys.delete(event.code);
 
   updateInput();
-  updateButtons();
+  updateDisplay();
   sendCommand();
 });
 
@@ -104,6 +115,6 @@ window.addEventListener("blur", () => {
   pressedKeys.clear();
 
   updateInput();
-  updateButtons();
+  updateDisplay();
   sendCommand();
 });

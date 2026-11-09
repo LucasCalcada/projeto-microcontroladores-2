@@ -1,8 +1,9 @@
 :root {
   font-family: "Courier New", Courier, monospace;
 
-  --dark-bg: #e3e3e8;
-  --light-bg: white;
+  --dark-bg: #0e0e11;
+  --light-bg: #121215;
+  color: white;
 }
 
 html,
@@ -19,6 +20,14 @@ body {
   background-color: var(--dark-bg);
 }
 
+main {
+  display: flex;
+  height: 100%;
+  padding: 32px;
+  gap: 32px;
+  justify-content: space-between;
+}
+
 .header {
   display: flex;
   flex-direction: row;
@@ -30,7 +39,7 @@ body {
   background-color: var(--light-bg);
 }
 
-.header > h1 {
+h1 {
   margin: 0;
   font-size: 16pt;
 }
@@ -40,55 +49,86 @@ body {
 }
 
 .camera {
-  flex: 1;
+  aspect-ratio: 1;
+}
 
-  display: flex;
-  justify-content: center;
+img {
+  background-color: var(--light-bg);
+  border-radius: 16px;
+  width: 100%;
+  border: none;
 }
 
 .controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   flex: 1;
+  gap: 32px;
+}
+
+.card {
   background-color: var(--light-bg);
-  border-radius: 12px 12px 0px 0px;
+  border-radius: 16px;
+  flex: 1;
+  padding: 32px;
 
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 128px;
+  position: relative;
+}
+
+.card > h1 {
+  position: absolute;
+  left: 16px;
+  top: 16px;
+}
+
+.input-bg {
+  border: 2px solid #4b4b57;
+  background-image: radial-gradient(#4b4b57 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.indicator {
+  background-color: white;
+  transform: translate(-50%, -50%);
+  transition: all 100ms;
 }
 
 .directions {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 150px;
+  width: 300px;
+  height: 300px;
+  border-radius: 100%;
+  position: relative;
 }
 
-.directions > div {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
+#joystick-indicator {
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+
+  position: absolute;
+  left: 50%;
+  top: 50%;
 }
 
 .rotation {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  width: 125px;
+  width: 300px;
+  height: 60px;
+  position: relative;
+  border-radius: 16px;
 }
 
-button {
-  aspect-ratio: 1;
-  width: 50px;
-  border-radius: 12px;
-  border: none;
-  transition:
-    background-color 100ms ease,
-    transform 100ms ease;
-}
+#rotation-indicator {
+  width: 20px;
+  height: 40px;
+  border-radius: 6px;
 
-button.active {
-  background-color: #3b82f6;
-  color: white;
-  transform: scale(0.95);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

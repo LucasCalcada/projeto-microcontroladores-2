@@ -3,30 +3,32 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Bot Dashboard</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="/static/style.css" />
   </head>
   <body>
     <div class="header">
-      <h1>Bot Dashboard</h1>
+      <h1>Painel de Controle</h1>
     </div>
-    <div class="camera">
-      <img src="/camera/stream" />
-    </div>
-    <div class="controls">
-      <div class="directions">
-        <button id="up"></button>
-        <div>
-          <button id="left"></button>
-          <button id="right"></button>
+    <main>
+      <div class="camera">
+        <img src="/camera/stream" />
+      </div>
+      <div class="controls">
+        <div class="card">
+          <h1>Translação</h1>
+          <div class="directions input-bg">
+            <div id="joystick-indicator" class="indicator"></div>
+          </div>
         </div>
-        <button id="down"></button>
+        <div class="card">
+          <h1>Rotação</h1>
+          <div class="rotation input-bg">
+            <div id="rotation-indicator" class="indicator"></div>
+          </div>
+        </div>
       </div>
-      <div class="rotation">
-        <button id="rot-left"></button>
-        <button id="rot-right"></button>
-      </div>
-    </div>
+    </main>
   </body>
   <script src="/static/script.js"></script>
 </html>
